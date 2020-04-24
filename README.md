@@ -13,7 +13,7 @@ The above command will download the package to the **node_modules** folder. It w
 ### Usage
 
 ```
-const toc    = require("toc/index.js");
+const toc    = require("@pakjiddat/toc/index");
 
 var tocData  = toc.Generate(data);
 ```
