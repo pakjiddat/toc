@@ -1,4 +1,4 @@
-# Node.js Table of Contents (TOC)
+# Node.js Table of Contents Generator (TOC)
 
 Standalone Node.js module for generating table of contents from HTML text
 
