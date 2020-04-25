@@ -1,6 +1,6 @@
 {
   "name": "@pakjiddat/toc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Standalone Node.js module for generating table of contents from HTML text",
   "main": "index.js",
   "scripts": {
