@@ -194,13 +194,13 @@ class TOC {
       let btText             = regex.exec(text);
 
       /** If the text between the headings could not be parsed */
-      if (btText == null) {
+      //if (btText == null) {
         /** The regex and text are saved to log file in tests directory */
-        const fs   = require("fs");
-        fs.writeFileSync('tests/debug.log', (pattern + "\n\n" + text), "utf8", (err) => {
-          console.log('Debug information has been written to tests/debug.log');
-        });
-      }
+        //const fs   = require("fs");
+        //fs.writeFileSync('tests/debug.log', (pattern + "\n\n" + text), "utf8", (err) => {
+          //console.log('Debug information has been written to tests/debug.log');
+        //});
+      //}
 
       /** The next text */
       let nextText           = btText[1];
