@@ -70,11 +70,11 @@ class TOC {
       /** The link id */
       let id             = match[1];
       /** The regular expression used to search for headings. The special regex characters are removed from the text */
-      let replRegex      = new RegExp("<h(\\d)(.*?)>" + text + "</h\\d>");
+      let searchRegex    = new RegExp("<h(\\d)(.*?)>(.*)" + text + "(.*)</h\\d>");
       /** The replacement expression */
-      let replacement    = "<h$1$2 id='" + id + "'>" + text + "</h$1>";
+      let replacement    = "<h$1$2 id='" + id + "'>$3" + text + "$4</h$1>";
       /** The text is replaced within the article text */
-      updatedArticleText = updatedArticleText.replace(replRegex, replacement);
+      updatedArticleText = updatedArticleText.replace(searchRegex, replacement);
       /** The heading count is increased by 1 */
       headingCount++;
     }
@@ -98,6 +98,8 @@ class TOC {
     for (let hText in headings) {
       /** The subheadings */
       let subHeadings = headings[hText];
+      /** The hyperlinks are removed from the heading text */
+      hText           = hText.replace(/(<([^>]+)>)/ig,"");
       /** The header id is generated */
       let hTextId     = hText.toLowerCase();
       hTextId         = hTextId.replace(/[^a-z]/g, "-");
@@ -194,13 +196,9 @@ class TOC {
       let btText             = regex.exec(text);
 
       /** If the text between the headings could not be parsed */
-      //if (btText == null) {
-        /** The regex and text are saved to log file in tests directory */
-        //const fs   = require("fs");
-        //fs.writeFileSync('tests/debug.log', (pattern + "\n\n" + text), "utf8", (err) => {
-          //console.log('Debug information has been written to tests/debug.log');
-        //});
-      //}
+      if (btText == null) {
+        console.log((pattern + "\n\n" + text));
+      }
 
       /** The next text */
       let nextText           = btText[1];
@@ -236,6 +234,8 @@ class TOC {
     text                = text.replace(/\)/g, "\\)");
     text                = text.replace(/\[/g, "\\[");
     text                = text.replace(/\?/g, "\\?");
+    text                = text.replace(/\./g, "\\.");
+    text                = text.replace(/\+/g, "\\+");
     var updatedRegex    = text.replace(/\]/g, "\\]");
 
     return updatedRegex;
